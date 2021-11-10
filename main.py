@@ -11,9 +11,10 @@ class Ui(object):
         self.creat_info()
         self.printer = QPrinter()
         self.content = ""
+        self.path = ""
 
     def creat_info(self):
-        self.w=QWidget()
+        self.w = QWidget()
         self.w.setGeometry(0,0,2000,2000)
         self.w.setWindowTitle('Cantonese IDE')
         self.w.setWindowIcon(QIcon('res/icon.jpg'))
@@ -60,16 +61,19 @@ class Ui(object):
     def open_file(self):
         files = QFileDialog.getOpenFileName(self.w,'打开本地文件')
         if files[0]:
-            with open(files[0],mode='r',encoding='gb18030',errors='ignore') as f:
-                self.t1.setText(f.read())
+            with open(files[0],mode = 'r', encoding = 'utf-8',errors='ignore') as f:
+                c = f.read()
+                self.content = c
+                self.t1.setText(c)
 
     def open_files(self):
         files = QFileDialog.getOpenFileNames(self.w,'打开本地文件')
         print(files)
         if files[0]:
             for file in files[0]:
-                with open(file,mode='r',encoding='gb18030',errors='ignore') as f:
-                    self.t1.append(f.read())
+                with open(file,mode='r',encoding = 'utf-8',errors='ignore') as f:
+                    c = f.read()
+                    self.t1.append(c)
 
     def change_font(self):
         fo,b = QFontDialog.getFont()
@@ -86,7 +90,6 @@ class Ui(object):
         if file[0]:
             with open(file[0],mode='r',encoding='gb18030',errors='ignore') as f:
                 f.write(self.t1.toPlainText())
-                self.content = f
 
     def page_config(self):
         page_set = QPageSetupDialog(self.printer,self.w)
@@ -98,8 +101,10 @@ class Ui(object):
             self.t1.print(self.printer)
 
     def _run_file(self):
-        pass
+        print(self.content)
+        cantonese_run(self.content, is_to_py = False, 
+                    file = self.path, use_tradition = False)
 
 app = QApplication(sys.argv)
-u = Ui()
+ui = Ui()
 sys.exit(app.exec_())
