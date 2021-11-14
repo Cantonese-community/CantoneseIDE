@@ -24,6 +24,7 @@ class LanguageSetter(object):
                 'set_page' : dom.getElementsByTagName('set_page')[0].firstChild.data,
                 'print_file' : dom.getElementsByTagName('print_file')[0].firstChild.data,
                 'clear_file' : dom.getElementsByTagName('clear_file')[0].firstChild.data,
-                'run_file' : dom.getElementsByTagName('run_file')[0].firstChild.data
+                'run_file' : dom.getElementsByTagName('run_file')[0].firstChild.data,
+                'exit_' : dom.getElementsByTagName('exit')[0].firstChild.data
             }
         return data

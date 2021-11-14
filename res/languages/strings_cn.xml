@@ -8,4 +8,5 @@
 <print_file>打印文件</print_file>
 <clear_file>清除</clear_file>
 <run_file>运行</run_file>
+<exit>退出</exit>
 </resource>

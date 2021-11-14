@@ -1,5 +1,7 @@
+from PyQt5 import QtGui
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QFileDialog,QColorDialog,QApplication,QTextEdit,QFontDialog,QDialog,QWidget,QPushButton
+from PyQt5.QtWidgets import QFileDialog,QColorDialog,QApplication, \
+ QTextEdit,QFontDialog,QDialog,QWidget,QPushButton, QLabel
 from PyQt5.QtPrintSupport import QPageSetupDialog,QPrintDialog,QPrinter
 from PyQt5.QtGui import QIcon
 
@@ -18,32 +20,35 @@ class Ui(object):
         self.w = QWidget()
         self.w.setGeometry(0, 0, 2000, 2000)
         self.w.setWindowTitle('Cantonese IDE')
-        self.w.setWindowIcon(QIcon('res/icon.png'))
+        self.w.setWindowIcon(QIcon('res/icon.ico'))
+        self.w.setFixedSize(2000, 2000)
         self.creat_res()
         self.w.show()
 
     def creat_res(self):
         self.lang = LanguageSetter(LangType.CHINESE).data
         self.t1 = QTextEdit(self.w)
-        self.t1.setGeometry(10,10,1700,1900)
+        self.t1.setGeometry(0,30,1980,1980)
         self.B_openfile = QPushButton(self.lang['openfile'], self.w)
-        self.B_openfile.setGeometry(1750,15,200,70)
+        self.B_openfile.setGeometry(0,0,200,30)
         self.B_openmorefile = QPushButton(self.lang['openmorefile'], self.w)
-        self.B_openmorefile.setGeometry(1750,95,200,70)
+        self.B_openmorefile.setGeometry(200,0,200,30)
         self.B_change_font = QPushButton(self.lang['change_font'], self.w)
-        self.B_change_font.setGeometry(1750,155,200,70)
+        self.B_change_font.setGeometry(400,0,200,30)
         self.B_change_color = QPushButton(self.lang['change_color'], self.w)
-        self.B_change_color.setGeometry(1750,205,200,70)
+        self.B_change_color.setGeometry(600,0,200,30)
         self.save_file = QPushButton(self.lang['save_file'], self.w)
-        self.save_file.setGeometry(1750,255,200,70)
+        self.save_file.setGeometry(800,0,200,30)
         self.set_page = QPushButton(self.lang['set_page'], self.w)
-        self.set_page.setGeometry(1750,305,200,70)
+        self.set_page.setGeometry(1000,0,200,30)
         self.print_file = QPushButton(self.lang['print_file'], self.w)
-        self.print_file.setGeometry(1750,365,200,70)
+        self.print_file.setGeometry(1200,0,200,30)
         self.clear_file = QPushButton(self.lang['clear_file'],self.w)
-        self.clear_file.setGeometry(1750,425,200,70)
+        self.clear_file.setGeometry(1400,0,200,30)
         self.run_file = QPushButton(self.lang['run_file'], self.w)
-        self.run_file.setGeometry(1750, 485, 200, 70)
+        self.run_file.setGeometry(1600,0,200,30)
+        self.exit_ = QPushButton(self.lang['exit_'], self.w)
+        self.exit_.setGeometry(1800,0,200,30)
         self.config()
 
     def config(self):
@@ -56,6 +61,7 @@ class Ui(object):
         self.set_page.clicked.connect(self.page_config)
         self.print_file.clicked.connect(self.print_files)
         self.run_file.clicked.connect(self._run_file)
+        self.exit_.clicked.connect(self.exit__)
 
     def clear_all(self):
         self.t1.clear()
@@ -73,7 +79,7 @@ class Ui(object):
         print(files)
         if files[0]:
             for file in files[0]:
-                with open(file,mode='r',encoding = 'utf-8',errors='ignore') as f:
+                with open(file,mode= 'r', encoding = 'utf-8',errors='ignore') as f:
                     c = f.read()
                     self.t1.append(c)
 
@@ -105,6 +111,9 @@ class Ui(object):
     def _run_file(self):
         cantonese_run(self.content, is_to_py = False, 
                     file = self.path, use_tradition = False)
+
+    def exit__(self):
+        exit(1)
 
 app = QApplication(sys.argv)
 ui = Ui()

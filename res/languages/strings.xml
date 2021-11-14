@@ -8,4 +8,5 @@
 <print_file>Printer</print_file>
 <clear_file>Clear</clear_file>
 <run_file>Run</run_file>
+<exit>Exit</exit>
 </resource>
