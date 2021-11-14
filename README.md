@@ -9,7 +9,7 @@ Install the `PyQT` library:
 ```
 pip install pyqt
 ```
-
+Enjoy it!
 ```
 python main.py
 ```

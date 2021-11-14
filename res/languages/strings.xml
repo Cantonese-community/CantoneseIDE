@@ -1,3 +1,4 @@
+<resource>
 <openfile>Open</openfile>
 <openmorefile>OpenMore</openmorefile>
 <change_font>Font</change_font>
@@ -7,3 +8,4 @@
 <print_file>Printer</print_file>
 <clear_file>Clear</clear_file>
 <run_file>Run</run_file>
+</resource>

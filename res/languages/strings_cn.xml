@@ -1,3 +1,4 @@
+<resource>
 <openfile>打开文件</openfile>
 <openmorefile>打开多文件</openmorefile>
 <change_font>字体</change_font>
@@ -7,3 +8,4 @@
 <print_file>打印文件</print_file>
 <clear_file>清除</clear_file>
 <run_file>运行</run_file>
+</resource>
